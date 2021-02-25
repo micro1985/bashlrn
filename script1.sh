@@ -13,7 +13,7 @@ f_server_install()
 	sudo mkdir /home/user/nfsbckp
 	sudo chmod -R 777 /home/user/nfsbckp
 
-	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash)" | sudo tee /etc/exports
+	echo "/home/user/nfsbckp 192.168.40.0/24(rw,sync,no_root_squash)" | sudo tee /etc/exports
 
 	sudo exportfs -a
 	sudo systemctl restart nfs-server
