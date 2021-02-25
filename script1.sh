@@ -11,7 +11,6 @@ f_server_install()
 	systemctl start nfs-server
 
 	sudo mkdir /home/user/nfsbckp
-	sudo chown -R nfsnobody:nfsnobody /home/user/nfsbckp
 	sudo chmod -R 777 /home/user/nfsbckp
 
 	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,all_squash)" | sudo tee /etc/exports
