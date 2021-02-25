@@ -4,7 +4,7 @@ osname=`hostname`
 
 f_server_install()
 {
-	sudo yum install nfs-utils nfs-utils-lib
+	sudo yum install nfs-utils nfs-utils-lib -y
 	sudo systemctl enable rpcbind
 	sudo systemctl enable nfs-server
 	systemctl start rpcbind
@@ -15,15 +15,27 @@ f_server_install()
 
 	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,no_all_squash)" | sudo tee -a /etc/exports
 
-	sudo exports -a
+	sudo exportfs -a
 	sudo systemctl restart nfs-server
 }
 
+f_client_install()
+{
+	sudo yum install nfs-utils -y
+        sudo systemctl enable rpcbind
+        sudo systemctl enable nfs-server
+        systemctl start rpcbind
+        systemctl start nfs-server
+
+	sudo mkdir /home/user/backup
+	mount -t nfs 192.168.40.161:/home/user/nfsbckp/ /home/user/backup
+}
 
 if [ "${osname}" == "server" ]; then
 	echo ${osname}
 	f_server_install
 elif [ "${osname}" == "client" ]; then
 	echo ${osname}
+	f_client_install
 fi
 
