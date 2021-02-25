@@ -2,8 +2,6 @@
 
 osname=`hostname`
 
-echo ${osname}
-
 f_server_install()
 {
 	sudo yum install nfs-utils nfs-utils-lib
@@ -24,6 +22,7 @@ f_server_install()
 
 if [ "${osname}" == "server" ]; then
 	echo ${osname}
+	f_server_install
 elif [ "${osname}" == "client" ]; then
 	echo ${osname}
 fi
