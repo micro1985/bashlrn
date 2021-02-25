@@ -14,7 +14,7 @@ f_server_install()
 	sudo chown -R nfsnobody:nfsnobody /home/user/nfsbckp
 	sudo chmod -R 777 /home/user/nfsbckp
 
-	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,no_all_squash)" | sudo tee /etc/exports
+	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,all_squash)" | sudo tee /etc/exports
 
 	sudo exportfs -a
 	sudo systemctl restart nfs-server
