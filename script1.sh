@@ -13,7 +13,7 @@ f_server_install()
 	sudo mkdir /home/user/nfsbckp
 	sudo chmod -R 777 /home/user/nfsbckp
 
-	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,no_all_squash)" | sudo tee -a /etc/exports
+	echo "/home/user/nfsbckp 192.168.40.0/24 (rw,sync,no_root_squash,no_all_squash)" | sudo tee /etc/exports
 
 	sudo exportfs -a
 	sudo systemctl restart nfs-server
@@ -28,7 +28,7 @@ f_client_install()
         systemctl start nfs-server
 
 	sudo mkdir /home/user/backup
-	mount -t nfs 192.168.40.161:/home/user/nfsbckp/ /home/user/backup
+	sudomount -t nfs 192.168.40.161:/home/user/nfsbckp/ /home/user/backup
 }
 
 if [ "${osname}" == "server" ]; then
