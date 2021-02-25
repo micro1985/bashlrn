@@ -29,7 +29,7 @@ f_client_install()
         systemctl start nfs-server
 
 	sudo mkdir /home/user/backup
-	sudomount -t nfs 192.168.40.161:/home/user/nfsbckp/ /home/user/backup
+	sudo mount -t nfs 192.168.40.161:/home/user/nfsbckp/ /home/user/backup
 }
 
 if [ "${osname}" == "server" ]; then
