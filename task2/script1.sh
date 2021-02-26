@@ -20,4 +20,16 @@ sudo mysql -u root -e "create database zabbix character set utf8 collate utf8_bi
 sudo mysql -u root -e "create user 'zabbix'@'localhost' identified by '123456';"
 sudo mysql -u root -e "grant all privileges on zabbix.* to 'zabbix'@'localhost';"
 
-sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | sudo mysql -u zabbix --password=123456 zabbix &1>log.log
+sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz $1>log.log $2>log2.log | sudo mysql -u zabbix --password=123456 zabbix
+
+#sudo sed -i "/\# DBHost/c DBHost=localhost" /etc/zabbix/zabbix_server.conf
+#sudo sed -i "/DBHost/c DBHost=localhost" /etc/zabbix/zabbix_server.conf   #for universality
+#sudo sed -i "/\# DBName=/d" /etc/zabbix/zabbix_server.conf
+#sudo sed -i "/DBName/c DBName=zabbix" /etc/zabbix/zabbix_server.conf
+
+
+
+
+#sudo sed -i "/DBHost/c DBHost=localhost" /etc/zabbix/zabbix_server.conf
+#sudo sed -i "/DBHost/c DBHost=localhost" /etc/zabbix/zabbix_server.conf
+
