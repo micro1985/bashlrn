@@ -52,3 +52,7 @@ sudo sed -i "/DBPassword=/c DBPassword=123456" /etc/zabbix/zabbix_server.conf
 
 sudo systemctl start zabbix-server httpd
 sudo systemctl enable zabbix-server httpd
+
+###Configuring Zabbix conf for Apache
+
+sudo sed -i "/\# php_value date.timezone/c \ \ \ \ \ \ \ \ php_value date.timezone Europe/Minsk" /etc/httpd/conf.d/zabbix.conf
