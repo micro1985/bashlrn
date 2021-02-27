@@ -13,7 +13,7 @@ fi
 
 sudo rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/7/x86_64/zabbix-release-4.4-1.el7.noarch.rpm
 sudo yum-config-manager --enable rhel-7-server-optional-rpms
-sudo yum install zabbix-server-mysql zabbix-web-mysql mariadb-server -y
+sudo yum install zabbix-server-mysql zabbix-web-mysql mariadb-server httpd httpd-devel php php-devel php-bcmath php-pear php-gd php-mbstring php-mysql php-xml  -y
 
 ###Configurinf DB
 
