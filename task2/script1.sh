@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cheeck='systemctl status zabbix-server | grep "Active: active"'
+cheeck=`sudo yum list installed | grep zabbix`
 
 if [ "${cheeck}" != "" ]; then
 	echo "Zabbix is already installed"
