@@ -1,6 +1,6 @@
 #!/bin/bash
 
-###Checking for installed Zabbix
+###Checking for installed Zabbix 
 
 cheeck=`sudo yum list installed | grep zabbix`
 
