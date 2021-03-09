@@ -9,10 +9,16 @@ if [ "${cheeck}" != "" ]; then
         exit
 fi
 
+###Installing packages
+
 sudo rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/7/x86_64/zabbix-release-4.4-1.el7.noarch.rpm
 sudo yum-config-manager --enable rhel-7-server-optional-rpms
 
 sudo yum install zabbix-agent -y
+
+echo "Packages installed"
+
+###Configuring zabbix agent config file
 
 sudo sed -i "/Server=127.0.0.1/d" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/\# Server=/c Server=192.168.40.161" /etc/zabbix/zabbix_agentd.conf
@@ -20,6 +26,17 @@ sudo sed -i "/ServerActive=127.0.0.1/d" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/\# ServerActive=/c ServerActive=192.168.40.161" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/\# Hostname=/d" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/Hostname=/c Hostname=Client" /etc/zabbix/zabbix_agentd.conf
+
+echo "Zabbix agent configured"
+
+###Disabling SELinux
+
+sudo sed -i "/SELINUX=enforcing/c SELINUX=disabled" /etc/selinux/config
+sudo setenforce 0
+
+echo "SELinux disabled"
+
+###Starting zabbix
 
 sudo systemctl start zabbix-agent
 sudo systemctl enable zabbix-agent
