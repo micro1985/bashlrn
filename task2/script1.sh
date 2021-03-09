@@ -39,7 +39,7 @@ sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | sudo mysql -u zabb
 
 ###Disabling SELinux
 
-sudo sed -i "/SELINUX=enfircing/c SELINUX=disabled" /etc/zabbix/zabbix_server.conf
+sudo sed -i "/SELINUX=enfircing/c SELINUX=disabled" /etc/selinux/config
 sudo setenforce 0
 
 ###Configuring zabbix config file
