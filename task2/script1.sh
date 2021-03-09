@@ -37,6 +37,11 @@ sudo mysql -u root -e "grant all privileges on zabbix.* to 'zabbix'@'localhost';
 
 sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | sudo mysql -u zabbix --password=123456 zabbix
 
+###Disabling SELinux
+
+sudo sed -i "/SELINUX=enfircing/c SELINUX=disabled" /etc/zabbix/zabbix_server.conf
+sudo setenforce 0
+
 ###Configuring zabbix config file
 
 sudo sed -i "/\# DBHost=/c DBHost=localhost" /etc/zabbix/zabbix_server.conf
