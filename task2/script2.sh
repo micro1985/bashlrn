@@ -21,9 +21,9 @@ echo "Packages installed"
 ###Configuring zabbix agent config file
 
 sudo sed -i "/Server=127.0.0.1/d" /etc/zabbix/zabbix_agentd.conf
-sudo sed -i "/\# Server=/c Server=192.168.40.161" /etc/zabbix/zabbix_agentd.conf
+sudo sed -i "/\# Server=/c Server=172.16.123.10" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/ServerActive=127.0.0.1/d" /etc/zabbix/zabbix_agentd.conf
-sudo sed -i "/\# ServerActive=/c ServerActive=192.168.40.161" /etc/zabbix/zabbix_agentd.conf
+sudo sed -i "/\# ServerActive=/c ServerActive=172.16.123.10" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/\# Hostname=/d" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "/Hostname=/c Hostname=Client" /etc/zabbix/zabbix_agentd.conf
 
