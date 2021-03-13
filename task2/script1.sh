@@ -33,8 +33,13 @@ y
 y
 EOF
 
+###Generating temp pass for DB
+
+python $PWD/pass.py
+passdb=`cat $PWD/psswd`
+
 sudo mysql -u root -e "create database zabbix character set utf8 collate utf8_bin;"
-sudo mysql -u root -e "create user 'zabbix'@'localhost' identified by '123456';"
+sudo mysql -u root -e "create user 'zabbix'@'localhost' identified by '$passdb';"
 sudo mysql -u root -e "grant all privileges on zabbix.* to 'zabbix'@'localhost';"
 
 echo "DB configured"
@@ -51,11 +56,6 @@ sudo sed -i "/SELINUX=enforcing/c SELINUX=disabled" /etc/selinux/config
 sudo setenforce 0
 
 echo "SELinux disabled"
-
-###Generating temp pass for DB
-
-python $PWD/pass.py
-passdb=`cat $PWD/psswd`
 
 ###Configuring zabbix config file
 
