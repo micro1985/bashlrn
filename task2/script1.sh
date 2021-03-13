@@ -52,6 +52,11 @@ sudo setenforce 0
 
 echo "SELinux disabled"
 
+###Generating temp pass for DB
+
+python $PWD/pass.py
+passdb=`cat $PWD/psswd`
+
 ###Configuring zabbix config file
 
 sudo sed -i "/\# DBHost=/c DBHost=localhost" /etc/zabbix/zabbix_server.conf
@@ -60,8 +65,8 @@ sudo sed -i "/\# DBName=/d" /etc/zabbix/zabbix_server.conf
 sudo sed -i "/DBName=/c DBName=zabbix" /etc/zabbix/zabbix_server.conf
 sudo sed -i "/\# DBUser=/d" /etc/zabbix/zabbix_server.conf
 sudo sed -i "/DBUser=/c DBUser=zabbix" /etc/zabbix/zabbix_server.conf
-sudo sed -i "/\# DBPassword=/c DBPassword=123456" /etc/zabbix/zabbix_server.conf
-sudo sed -i "/DBPassword=/c DBPassword=123456" /etc/zabbix/zabbix_server.conf
+sudo sed -i "/\# DBPassword=/c DBPassword=$passdb" /etc/zabbix/zabbix_server.conf
+sudo sed -i "/DBPassword=/c DBPassword=$passdb" /etc/zabbix/zabbix_server.conf
 
 echo "Zabbix configured"
 
@@ -77,3 +82,6 @@ sudo systemctl start zabbix-server httpd
 sudo systemctl enable zabbix-server httpd
 
 echo "Zabbix started and autorunned"
+
+echo "Temp pass for DB is $passdb"
+rm $PWD/psswd
