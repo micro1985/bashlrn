@@ -40,14 +40,14 @@ python $PWD/pass.py
 passdb=`cat $PWD/psswd`
 
 sudo mysql -u root -e "create database zabbix character set utf8 collate utf8_bin;"
-sudo mysql -u root -e "create user 'zabbix'@'localhost' identified by \"$passdb\";"
+sudo mysql -u root -e "create user 'zabbix'@'localhost' identified by '$passdb';"
 sudo mysql -u root -e "grant all privileges on zabbix.* to 'zabbix'@'localhost';"
 
 echo "DB configured"
 
 ###Importing data
 
-sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | sudo mysql -u zabbix --password=123456 zabbix
+sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | sudo mysql -u zabbix --password=$passdb zabbix
 
 echo "Zabbix server config imported to DB"
 
@@ -85,4 +85,4 @@ sudo systemctl enable zabbix-server httpd
 echo "Zabbix started and autorunned"
 
 echo "Temp pass for DB is $passdb"
-#rm $PWD/psswd
+rm $PWD/psswd
