@@ -1,4 +1,4 @@
-from smart_env import ENV
+import sys
 from random import randint
 
 cort = ("a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F", "g", "G",
@@ -6,20 +6,13 @@ cort = ("a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F", "g", "G",
         "o", "O", "p", "P", "q", "Q", "r", "R", "s", "S", "t", "T", "u", "U",
         "v", "V", "w", "W", "x", "X", "y", "Y", "z", "Z", "1", "2", "3", "4",
         "5", "6", "7", "8", "9", "0", "!", "@", "#", "$", "%", "^", "&", "*",
-        "(", ")")
+        "(", ")", "0")
 ps = ""
 
 for i in range(12):
-    k = randint(0, len(cort))
+    k = randint(0, len(cort)-1)
     ps += cort[k]
 
-print(ps)
+print >>sys.stderr, "something"
 
-ENV.enable_automatic_type_cast()
-
-ENV.PS_VAR = ps
-
-print(ENV.PS_VAR)
-#psfile = open("psswd", 'w')
-#psfile.write(ps)
-#psfile.close()
+print ps
